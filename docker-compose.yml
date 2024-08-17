@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: task-management-api-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: task_management_api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
+      
