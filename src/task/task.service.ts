@@ -1,14 +1,15 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { log } from 'console';
-import { TaskDto } from './task.dto';
+import { v4 as uuid } from 'uuid';
+import { TaskDto, TaskStatusEnum } from './task.dto';
 
 @Injectable()
 export class TaskService {
   private tasks: TaskDto[] = [];
 
-  create(task: TaskDto) {
-    this.tasks.push(task);
-    log(this.tasks);
+  create(newTask: TaskDto) {
+    newTask.id = uuid();
+    newTask.status = TaskStatusEnum.OPEN;
+    this.tasks.push(newTask);
   }
 
   findById(id: string): TaskDto {
@@ -49,7 +50,6 @@ export class TaskService {
     }
 
     this.tasks[taskId] = task;
-    log(this.tasks);
   }
 
   remove(id: string) {
@@ -63,6 +63,5 @@ export class TaskService {
     }
 
     this.tasks.splice(taskId, 1);
-    log(this.tasks);
   }
 }
