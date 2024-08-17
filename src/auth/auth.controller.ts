@@ -8,7 +8,7 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() credentials: CredentialDto): AuthResponseDto {
-    return this.authService.signIn(credentials);
+  async signIn(@Body() credentials: CredentialDto): Promise<AuthResponseDto> {
+    return await this.authService.signIn(credentials);
   }
 }

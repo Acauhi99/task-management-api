@@ -19,8 +19,8 @@ export class AuthService {
     );
   }
 
-  signIn(credentials: CredentialDto): AuthResponseDto {
-    const foundUser = this.userService.findByEmail(credentials.email);
+  async signIn(credentials: CredentialDto): Promise<AuthResponseDto> {
+    const foundUser = await this.userService.findByEmail(credentials.email);
 
     if (
       !foundUser ||
