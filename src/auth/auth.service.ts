@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   async signIn(credentials: CredentialDto): Promise<AuthResponseDto> {
-    const foundUser = await this.userService.findByEmail(credentials.email);
+    const foundUser = await this.userService.findByUserEmail(credentials.email);
 
     if (
       !foundUser ||

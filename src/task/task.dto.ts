@@ -14,7 +14,6 @@ export enum TaskStatusEnum {
   DONE = 'DONE',
 }
 
-//Para validacoes de dados precisa ser uma classe
 export class TaskDto {
   @IsUUID()
   @IsOptional()
@@ -43,7 +42,7 @@ export interface FindAllParameters {
   status: string;
 }
 
-export class TaskRouterParameters {
+export class TaskRouteParameters {
   @IsUUID()
   id: string;
 }

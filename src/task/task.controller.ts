@@ -12,7 +12,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { FindAllParameters, TaskDto, TaskRouterParameters } from './task.dto';
+import { FindAllParameters, TaskDto, TaskRouteParameters } from './task.dto';
 import { TaskService } from './task.service';
 
 @UseGuards(AuthGuard)
@@ -37,9 +37,8 @@ export class TaskController {
 
   @Put('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async update(@Param() param: TaskRouterParameters, @Body() task: TaskDto) {
-    task.id = param.id;
-    return await this.taskService.update(task);
+  async update(@Param() params: TaskRouteParameters, @Body() task: TaskDto) {
+    await this.taskService.update(params.id, task);
   }
 
   @Delete('/:id')

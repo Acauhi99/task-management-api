@@ -11,3 +11,11 @@ export class UserDto {
   @IsStrongPassword()
   password: string;
 }
+
+export class CreateUserResponse {
+  @IsUUID()
+  id: string;
+
+  @IsEmail()
+  email: string;
+}
