@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { compareSync as bcryptCompare } from 'bcrypt';
@@ -26,7 +26,7 @@ export class AuthService {
       !foundUser ||
       !bcryptCompare(credentials.password, foundUser.password)
     ) {
-      throw new UnauthorizedException();
+      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
 
     const payload = { sub: foundUser.id, emai: foundUser.email };
